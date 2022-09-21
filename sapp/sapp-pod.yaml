@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sapp-pod
+spec:
+  volumes:
+  - name: local-pv
+    persistentVolumeClaim:
+      claimName: local-pv-claim
+  - name: config-file
+    configMap:
+      name: config-file
+  containers:
+  - image: lxjsword/sapp:v2
+    env:
+    - name: INTERVAL
+      value: "30"
+    - name: USERNAME
+      valueFrom:
+        configMapKeyRef:
+          name: my-config
+          key: USERNAME
+    command: ["python"]
+    args: ["-m", "http.server"]
+    name: sapp
+    ports:
+    - containerPort: 8000
+      protocol: TCP
+    volumeMounts:
+      - mountPath: /home/sapp/pv
+        name: local-pv
+      - name: config-file
+        mountPath: /home/sapp/config-file
+        subPath: config-file
+        readOnly: true

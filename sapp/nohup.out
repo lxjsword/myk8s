@@ -1,0 +1,12 @@
+* Mounting host path /Users/lixiaojian/data/myk8s/sapp/pv into VM as /data/pv ...
+  - Mount type:   
+  - 用户 ID：      docker
+  - Group ID:     docker
+  - 版本：      9p2000.L
+  - Message Size: 262144
+  - Options:      map[]
+  - 绑定地址：127.0.0.1:51331
+* Userspace file server: ufs starting
+* Successfully mounted /Users/lixiaojian/data/myk8s/sapp/pv to /data/pv
+
+* NOTE: This process must stay alive for the mount to be accessible ...
